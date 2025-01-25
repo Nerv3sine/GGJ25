@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] GameObject bubble;
+    Bubble bubbleS;
     
 
     [SerializeField] InputActionReference blow;
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        bubbleS = bubble.GetComponent<Bubble>();
     }
 
     
@@ -73,10 +75,11 @@ public class PlayerMovement : MonoBehaviour
         bubble.transform.localScale = new Vector3(1*bubbleSize, 1*bubbleSize, 1*bubbleSize);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void Grounded()
     {
         popped = false;
-    }
+        bubbleS.BubbleAppear();
 
+    }
 
 }
