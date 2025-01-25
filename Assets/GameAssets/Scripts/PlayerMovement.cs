@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.AddForce(0, bubbleSize, 0);
        
-        bubble.transform.localScale = new Vector3(1*bubbleSize, 1*bubbleSize, 1*bubbleSize);
+        bubble.transform.localScale = new Vector3(1.1f*bubbleSize, 1.1f*bubbleSize, 1.1f*bubbleSize);
     }
 
     public void Grounded()
