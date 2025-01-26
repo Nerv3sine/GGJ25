@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!popped)
         {
-            rb.maxLinearVelocity = 7;
+            rb.maxLinearVelocity = 10;
             bubbleSize = Mathf.Clamp(bubbleSize, 0.9f, 1.7f);
             BubbleMovement();
         }
