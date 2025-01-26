@@ -850,6 +850,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -106813489663598131, guid: ac8bbe3e8db9d6d4f8aad43425b88b56, type: 3}
+      propertyPath: BackandForth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -106813489663598131, guid: ac8bbe3e8db9d6d4f8aad43425b88b56, type: 3}
       propertyPath: endPosition.x
       value: 13
       objectReference: {fileID: 0}
