@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class UIEvents : MonoBehaviour
 {
-    [SerializeField] Scene mainGame;
+    [SerializeField] int MMI;
 
     [SerializeField] GameObject[] mainMenuAssets;
     [SerializeField] GameObject[] creditsAssets;
@@ -17,7 +17,8 @@ public class UIEvents : MonoBehaviour
 
     public void StartTheGame()
     {
-        int MMI = mainGame.buildIndex;
+        
+        
         SceneManager.LoadScene(MMI);
     }
 
