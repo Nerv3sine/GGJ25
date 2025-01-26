@@ -11,11 +11,14 @@ public class MovingObstacle : MonoBehaviour
 
     [SerializeField] bool BackandForth = false;
     bool reverse = false;
-   
+    
+    Quaternion startRotation;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        startRotation = this.gameObject.transform.rotation;
+         
         startPosition = gameObject.transform.position;
         rb = GetComponent<Rigidbody>();
         
@@ -32,10 +35,15 @@ public class MovingObstacle : MonoBehaviour
         if(time >= 1) 
         {
             if (BackandForth) {
-                 reverse = true; }
+                 reverse = true;
+                transform.Rotate(Vector3.forward, 180); 
+            }
             else if (!BackandForth) { time = 0; }
         }
-        if (reverse && time <= 0) { reverse = false; }
+        if (reverse && time <= 0) { reverse = false;
+            transform.rotation = startRotation;
+        }
+
 
 
     }
