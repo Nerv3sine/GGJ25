@@ -47,12 +47,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (blow.action.inProgress)
         {
+            Debug.Log("FILLING!!!");
             FillBubble();
         }
+       
         if (!blow.action.inProgress) 
         {
+            Debug.Log("NOT FILLING!!!");
             EmptyBubble();
         }
+        
     }
 
     private void LeanPlayer()
