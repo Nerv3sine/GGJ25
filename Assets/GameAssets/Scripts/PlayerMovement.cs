@@ -17,11 +17,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float riseSpeed = .02f;
     [SerializeField] float deflateSpeed = .01f;
     [SerializeField] float fallSpeed = 0.5f;
-    [SerializeField] Vector2 movementStrength = new Vector2(10, 10);
      
     private float mouseDirectionDegree = 0.0f; //getter below
-
-    private Vector3 mouseDirection {get; set;} = Vector3.zero;
+    [SerializeField]
+    private Vector3 mouseDirection = Vector3.zero;
 
     void Start()
     {
@@ -59,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
             FillBubble();
         }
 
-        if ( !BlowManager.INSTANCE.IsBlowing()) 
+        if (!BlowManager.INSTANCE.IsBlowing()) 
         {
             Debug.Log("NOT FILLING!!!");
             EmptyBubble();
@@ -76,7 +75,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FillBubble()
     {
-        rb.AddForce(mouseDirection);
+       
+        rb.AddForce(mouseDirection * bubbleSize);
         bubbleSize += riseSpeed;
     }
 
@@ -91,11 +91,11 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("loudness --> " + BlowManager.INSTANCE.loudness);
         Debug.Log("bubbleSize --> " + bubbleSize);
 
-        rb.AddForce(mouseDirection * bubbleSize);
-       
+        // rb.AddForce(mouseDirection * bubbleSize);
+        MouseInput();
         bubble.transform.localScale = new Vector3(1.1f*bubbleSize, 1.1f*bubbleSize, 1.1f*bubbleSize);
 
-        MouseInput();
+      
 
     }
 

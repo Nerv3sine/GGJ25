@@ -36,7 +36,7 @@ public class BlowManager : MonoBehaviour
         {
             return false;
         }
-        return transform;
+        return true;
     }
    
     private void Blow()
