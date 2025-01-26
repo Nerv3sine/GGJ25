@@ -1,4 +1,4 @@
-using UnityEngine;
+ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
@@ -47,12 +47,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (blow.action.inProgress)
         {
+            Debug.Log("FILLING!!!");
             FillBubble();
         }
+       
         if (!blow.action.inProgress) 
         {
+            Debug.Log("NOT FILLING!!!");
             EmptyBubble();
         }
+        
     }
 
     private void LeanPlayer()
@@ -72,6 +76,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void BubbleMovement()
     {
+        Debug.Log("loudness --> " + BlowManager.INSTANCE.loudness);
+        Debug.Log("bubbleSize --> " + bubbleSize);
+       
         rb.AddForce(0, bubbleSize, 0);
        
         bubble.transform.localScale = new Vector3(1.1f*bubbleSize, 1.1f*bubbleSize, 1.1f*bubbleSize);

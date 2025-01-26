@@ -16,8 +16,9 @@ public class BlowManager : MonoBehaviour
     [SerializeField]
     private float loudnessSensitivity = 1.5f;
 
-    public float threshold { get; set; } = 0.05f; //USE THIS VARIABLE FOR AUDIO THRESHOLD!!!!!!!!!!!! RAAAAAAHHHH
+    //public float threshold { get; set; } = 0.05f; //USE THIS VARIABLE FOR AUDIO THRESHOLD!!!!!!!!!!!! RAAAAAAHHHH
 
+    public float threshold;
 
     public void OnEnable()
     {
@@ -31,7 +32,7 @@ public class BlowManager : MonoBehaviour
    
     private void Blow()
     {
-        loudness = BubbleAudioManager.INSTANCE.GetLoudnessFromMicrophone();
+        loudness = BubbleAudioManager.INSTANCE.GetLoudnessFromMicrophone() * loudnessSensitivity;
         if (loudness < threshold)
         {
             loudness = 0;
