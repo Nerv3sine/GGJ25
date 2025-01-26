@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49bd7c056ef1ca43b07023b04c02749, type: 3}
   m_Name: New Threshold
   m_EditorClassIdentifier: 
-  threshold: 0
+  threshold: 0.06
