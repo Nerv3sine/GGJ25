@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
 
     public float bubbleSize = 1;
     public bool popped = false;
+    [SerializeField] float riseSpeed = .02f;
+    [SerializeField] float fallSpeed = .01f;
     
     void Start()
     {
@@ -26,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!popped)
         {
-            bubbleSize = Mathf.Clamp(bubbleSize, 1.1f, 1.7f);
+            bubbleSize = Mathf.Clamp(bubbleSize, 0.7f, 1.7f);
             BubbleMovement();
         }
         
@@ -60,12 +62,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void FillBubble()
     {
-        bubbleSize += .01f;
+        bubbleSize += riseSpeed;
     }
 
     private void EmptyBubble()
     {
-        bubbleSize -= .01f;
+        bubbleSize -= fallSpeed;
     }
 
     private void BubbleMovement()
