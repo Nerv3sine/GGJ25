@@ -31,7 +31,7 @@ public class MovingObstacle : MonoBehaviour
         else if (reverse) { time -= (Time.deltaTime / 10); }
         
         aPosition = Mathf.Lerp(startPosition.x, endPosition.x, time);
-        this.gameObject.transform.position = new Vector3(aPosition, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+        this.gameObject.transform.position = new Vector3(aPosition, this.gameObject.transform.position.y, 0);
         if(time >= 1) 
         {
             if (BackandForth) {

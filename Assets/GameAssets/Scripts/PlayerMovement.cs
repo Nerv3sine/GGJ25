@@ -21,11 +21,13 @@ public class PlayerMovement : MonoBehaviour
     private float mouseDirectionDegree = 0.0f; //getter below
     [SerializeField]
     private Vector3 mouseDirection = Vector3.zero;
+    [SerializeField] float what;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         bubbleS = bubble.GetComponent<Bubble>();
+        what = rb.maxLinearVelocity;
     }
 
     
@@ -33,17 +35,32 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!popped)
         {
-            
-            bubbleSize = Mathf.Clamp(bubbleSize, 0.7f, 1.7f);
+            rb.maxLinearVelocity = 7;
+            bubbleSize = Mathf.Clamp(bubbleSize, 0.9f, 1.7f);
             BubbleMovement();
         }
-        
+
+        if (popped)
+        {
+            rb.maxLinearVelocity = what;
+        }
 
         if (swing.action.inProgress)
         {
             LeanPlayer();
         }
-        
+
+        if (BlowManager.INSTANCE.IsBlowing() && !popped)
+        {
+            Debug.Log("FILLING!!!");
+            FillBubble();
+        }
+
+        if (!BlowManager.INSTANCE.IsBlowing())
+        {
+            Debug.Log("NOT FILLING!!!");
+            EmptyBubble();
+        }
 
     }
 
@@ -52,18 +69,8 @@ public class PlayerMovement : MonoBehaviour
         //bubbleManager.loudness > bubbleManager.threshold ||
         //bubbleManager.loudness < bubbleManager.threshold &&
 
-        if ( BlowManager.INSTANCE.IsBlowing() && !popped)
-        {
-            Debug.Log("FILLING!!!");
-            FillBubble();
-        }
+       
 
-        if (!BlowManager.INSTANCE.IsBlowing()) 
-        {
-            Debug.Log("NOT FILLING!!!");
-            EmptyBubble();
-        }
-        
     }
 
     private void LeanPlayer()
@@ -75,15 +82,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void FillBubble()
     {
-       
-        rb.AddForce(mouseDirection * bubbleSize);
+        rb.AddForce(0, (bubbleSize + riseSpeed)/3, 0);
+       // rb.AddForce(mouseDirection * bubbleSize);
         bubbleSize += riseSpeed;
     }
 
     private void EmptyBubble()
     {
-        rb.AddForce(0, -fallSpeed, 0);
+        rb.AddForce(0, -fallSpeed/3, 0);
         bubbleSize -= deflateSpeed;
+        
     }
 
     private void BubbleMovement()
@@ -91,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("loudness --> " + BlowManager.INSTANCE.loudness);
         Debug.Log("bubbleSize --> " + bubbleSize);
 
-        // rb.AddForce(mouseDirection * bubbleSize);
+        rb.AddForce(0, bubbleSize, 0);
         MouseInput();
         bubble.transform.localScale = new Vector3(1.1f*bubbleSize, 1.1f*bubbleSize, 1.1f*bubbleSize);
 
