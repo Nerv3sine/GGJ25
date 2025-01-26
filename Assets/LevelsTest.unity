@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 1a862a2b6cb453248a21eb6f2d1854f3, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -26805,6 +26805,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2589089494524984019, guid: 95bfc24cf013f5b478b7e2f6a2b91cef, type: 3}
+      propertyPath: fallSpeed
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2589089494524984019, guid: 95bfc24cf013f5b478b7e2f6a2b91cef, type: 3}
+      propertyPath: riseSpeed
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2838535834181706641, guid: 95bfc24cf013f5b478b7e2f6a2b91cef, type: 3}
+      propertyPath: m_Mass
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2838535834181706641, guid: 95bfc24cf013f5b478b7e2f6a2b91cef, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 1024
