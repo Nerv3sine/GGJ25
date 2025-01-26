@@ -1,2 +1,13 @@
 fileFormatVersion: 2
 guid: ad39286827f6b46c4bc2e533fd7ba9ad
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - source: {instanceID: 0}
+  - getthethreshold: {fileID: 11400000, guid: 2362c7ee28f79d44a827cdff656ec417, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

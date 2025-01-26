@@ -52,13 +52,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (BlowManager.INSTANCE.IsBlowing() && !popped)
         {
-            Debug.Log("FILLING!!!");
             FillBubble();
         }
 
         if (!BlowManager.INSTANCE.IsBlowing())
         {
-            Debug.Log("NOT FILLING!!!");
+           
             EmptyBubble();
         }
 
@@ -77,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //swing value goes between -1, 1 on X axis.
        
-        rb.AddForce(swing.action.ReadValue<float>(), 0, 0);
+        rb.AddForce(swing.action.ReadValue<float>()*1.5f, 0, 0);
     }
 
     private void FillBubble()
@@ -96,8 +95,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void BubbleMovement()
     {
-        Debug.Log("loudness --> " + BlowManager.INSTANCE.loudness);
-        Debug.Log("bubbleSize --> " + bubbleSize);
+        
 
         rb.AddForce(0, bubbleSize, 0);
         MouseInput();

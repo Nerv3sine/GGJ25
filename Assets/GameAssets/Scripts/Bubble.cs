@@ -18,11 +18,12 @@ public class Bubble : MonoBehaviour
 
     public void BubbleBurst()
     {
-        StartCoroutine(Audio_Manager.INSTANCE.CutMusicPlaySFXAudio(Audio_Manager.INSTANCE.fall.length - 3, 3,Audio_Manager.INSTANCE.fall));
+        
         bubble.enabled = false;
         PlayerMovement.bubbleSize = 0;
         PlayerMovement.popped = true;
         sphereCollider.enabled = false;
+        StartCoroutine(Audio_Manager.INSTANCE.CutMusicPlaySFXAudio(Audio_Manager.INSTANCE.fall.length - 3, 3, Audio_Manager.INSTANCE.fall));
     }
 
     public void BubbleAppear()

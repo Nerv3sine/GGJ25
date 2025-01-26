@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIEvents : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class UIEvents : MonoBehaviour
     [SerializeField] GameObject[] creditsAssets;
     [SerializeField] GameObject[] optionsMenuObjects;
 
+    [SerializeField] Threshold threshold;
+    [SerializeField] Slider slider;
+    
 
     public void ExitTheGame()
     {
@@ -69,5 +73,11 @@ public class UIEvents : MonoBehaviour
         {
             menuObject.SetActive(true);
         }
+    }
+
+    public void ThresholdSlider()
+    {
+        float set = slider.value;
+        threshold.threshold = set;
     }
 }

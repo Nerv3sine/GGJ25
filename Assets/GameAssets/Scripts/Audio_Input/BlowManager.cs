@@ -19,10 +19,12 @@ public class BlowManager : MonoBehaviour
     //public float threshold { get; set; } = 0.05f; //USE THIS VARIABLE FOR AUDIO THRESHOLD!!!!!!!!!!!! RAAAAAAHHHH
 
     public float threshold;
+    [SerializeField] Threshold getthethreshold;
 
     public void OnEnable()
     {
         INSTANCE = FindFirstObjectByType<BlowManager>().GetComponent<BlowManager>();
+        threshold = getthethreshold.threshold;
 
     }
     public void Update()
