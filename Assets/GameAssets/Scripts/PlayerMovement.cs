@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] GameObject bubble;
     Bubble bubbleS;
-    
+    //[SerializeField] BlowManager bubbleManager;
 
     [SerializeField] InputActionReference blow;
     [SerializeField] InputActionReference swing;
@@ -15,8 +15,9 @@ public class PlayerMovement : MonoBehaviour
     public float bubbleSize = 1;
     public bool popped = false;
     [SerializeField] float riseSpeed = .02f;
-    [SerializeField] float fallSpeed = .01f;
-    
+    [SerializeField] float deflateSpeed = .01f;
+    [SerializeField] float fallSpeed = 0.5f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -43,15 +44,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //bubbleManager.loudness > bubbleManager.threshold ||
+        //bubbleManager.loudness < bubbleManager.threshold &&
 
-
-        if (blow.action.inProgress)
+        if (  blow.action.inProgress)
         {
             Debug.Log("FILLING!!!");
             FillBubble();
         }
+<<<<<<< HEAD
        
         if (!blow.action.inProgress) 
+=======
+        if ( !blow.action.inProgress) 
+>>>>>>> origin/develop
         {
             Debug.Log("NOT FILLING!!!");
             EmptyBubble();
@@ -66,12 +72,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void FillBubble()
     {
+        rb.AddForce(0, bubbleSize, 0);
         bubbleSize += riseSpeed;
     }
 
     private void EmptyBubble()
     {
-        bubbleSize -= fallSpeed;
+        rb.AddForce(0, -fallSpeed, 0);
+        bubbleSize -= deflateSpeed;
     }
 
     private void BubbleMovement()
