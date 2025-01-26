@@ -75,13 +75,13 @@ Material:
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _Degree: 1.39
+    - _Degree: 1.14
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Intensity: 2.26
+    - _Intensity: -0.08
     - _JournalWeight: 2.33
     - _Metallic: 0
     - _Mode: 0

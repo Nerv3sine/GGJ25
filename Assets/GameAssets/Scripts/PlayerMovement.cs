@@ -17,6 +17,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float riseSpeed = .02f;
     [SerializeField] float deflateSpeed = .01f;
     [SerializeField] float fallSpeed = 0.5f;
+    [SerializeField] Vector2 movementStrength = new Vector2(10, 10);
+     
+    private float mouseDirectionDegree = 0.0f; //getter below
+
+    private Vector3 mouseDirection {get; set;} = Vector3.zero;
 
     void Start()
     {
@@ -29,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!popped)
         {
+            
             bubbleSize = Mathf.Clamp(bubbleSize, 0.7f, 1.7f);
             BubbleMovement();
         }
@@ -47,17 +53,13 @@ public class PlayerMovement : MonoBehaviour
         //bubbleManager.loudness > bubbleManager.threshold ||
         //bubbleManager.loudness < bubbleManager.threshold &&
 
-        if (  blow.action.inProgress)
+        if ( BlowManager.INSTANCE.IsBlowing() && !popped)
         {
             Debug.Log("FILLING!!!");
             FillBubble();
         }
-<<<<<<< HEAD
-       
-        if (!blow.action.inProgress) 
-=======
-        if ( !blow.action.inProgress) 
->>>>>>> origin/develop
+
+        if ( !BlowManager.INSTANCE.IsBlowing()) 
         {
             Debug.Log("NOT FILLING!!!");
             EmptyBubble();
@@ -67,12 +69,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void LeanPlayer()
     {
+        //swing value goes between -1, 1 on X axis.
+       
         rb.AddForce(swing.action.ReadValue<float>(), 0, 0);
     }
 
     private void FillBubble()
     {
-        rb.AddForce(0, bubbleSize, 0);
+        rb.AddForce(mouseDirection);
         bubbleSize += riseSpeed;
     }
 
@@ -86,10 +90,13 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("loudness --> " + BlowManager.INSTANCE.loudness);
         Debug.Log("bubbleSize --> " + bubbleSize);
-       
-        rb.AddForce(0, bubbleSize, 0);
+
+        rb.AddForce(mouseDirection * bubbleSize);
        
         bubble.transform.localScale = new Vector3(1.1f*bubbleSize, 1.1f*bubbleSize, 1.1f*bubbleSize);
+
+        MouseInput();
+
     }
 
     public void Grounded()
@@ -98,5 +105,33 @@ public class PlayerMovement : MonoBehaviour
         bubbleS.BubbleAppear();
 
     }
+    public void MouseInput()
+    {
+        Vector3 mousePos = Input.mousePosition.normalized;
+        float mouseX = mousePos.x; //bounded between 0 - 1...
+
+        Debug.Log(mouseX);
+
+        float pi = Mathf.PI;
+
+        float theta = Mathf.Lerp(3 * pi / 4, pi/4, mouseX);
+
+        mouseDirectionDegree = theta; //setting mouse degree. 
+        Vector3 originalDirection = new Vector3(Mathf.Cos(theta), Mathf.Sin(theta), 0);
+        mouseDirection = originalDirection;
+        //if we want z position movement later on, vec3 flips 90 degrees.
+        Vector3 rotatedDirection = new Vector3(-originalDirection.z, originalDirection.y, originalDirection.x);
+
+        Debug.DrawRay(Vector3.zero, originalDirection, Color.green);
+
+
+    }
+    public float GetMouseAngle()
+    {
+        //USE FOR UI DEVELOPMENT!!!!
+        return mouseDirectionDegree;
+
+    }
+    
 
 }

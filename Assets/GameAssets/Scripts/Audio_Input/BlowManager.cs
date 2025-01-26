@@ -27,7 +27,16 @@ public class BlowManager : MonoBehaviour
     }
     public void Update()
     {
-        Blow();
+        //Blow();
+    }
+    public bool IsBlowing()
+    {
+        loudness = BubbleAudioManager.INSTANCE.GetLoudnessFromMicrophone() * loudnessSensitivity;
+        if (loudness < threshold)
+        {
+            return false;
+        }
+        return transform;
     }
    
     private void Blow()
